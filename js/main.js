@@ -14,7 +14,7 @@ let nombreLibroD = "Tratado de Fisiologia Medica - Guyton y Hall"
 let precioLibroD = 3000
 let stockLibroD = 50
 
-let cantidadCompras = prompt("Ingrese la cantidad de productos distintos que quiere comprar: \n- Atlas de Anatomia Humana Netter \n- Anatomia Humana Latarjet \n- Histologia Texto y Atlas Ross \n- Tratado de Fisiologia Medica - Guyton y Hall")
+let cantidadCompras = prompt("Indique la cantidad de libros distintos que quiere comprar: \n- Atlas de Anatomia Humana Netter \n- Anatomia Humana Latarjet \n- Histologia Texto y Atlas Ross \n- Tratado de Fisiologia Medica - Guyton y Hall")
 let precioTotal = 0;
 
 function calculoPrecio(cantidad, precio){
@@ -27,7 +27,7 @@ function calculoStock (cantidad, stock, precio){
         alert("El precio total es de: $" + (cantidad* precio))
     }
     else{
-        alert("No disponemos de esa cantidad en stock. Nuestro stock actual es de: " + stock + " unidades")
+        alert("No contamos con esa cantidad. Nuestro stock actual es de: " + stock + " unidades")
     }
 }
 
