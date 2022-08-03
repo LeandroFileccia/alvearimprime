@@ -11,6 +11,22 @@ const libro4 = new Libro ("Tratado de Fisiologia Medica - Guyton y Hall", 3000, 
 
 let listaLibros = [libro1, libro2, libro3, libro4]
 
+
+for (const libro of listaLibros) {
+    if (libro.stock != 0) {
+        
+   
+        let card = document.createElement("div")
+        card.innerHTML =    `<h3> ${libro.nombre}</h3>
+                            <p>$ ${libro.precio}</p>
+                            <p>Unidades restantes: ${libro.stock}</p>`
+                            
+        document.body.append(card)
+    
+    } 
+}
+
+
 let nombresLibros = listaLibros.map((libro) => libro.nombre)
 
 let cantidadCompras = prompt("Indique la cantidad de libros distintos que quiere comprar: " + "\n "+nombresLibros.join("\n "))
@@ -27,7 +43,7 @@ function calculoStock (cantidad, libro){
         alert("Compraste: " + libro.nombre)
     }
     else{
-        alert("No contamos con esa cantidad. Nuestro stock actual es de: " + stock + " unidades")
+        alert(`No contamos con esa cantidad. Nuestro stock actual es de:  ${libro.stock} unidades`)
     }
 }
 
