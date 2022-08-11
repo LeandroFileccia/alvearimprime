@@ -11,26 +11,35 @@ const libro4 = new Libro('Tratado de Fisiologia Medica - Guyton y Hall', 3000, 5
 
 let listaLibros = [libro1, libro2, libro3, libro4]
 
-for (var i = 0; i < listaLibros.length; i++) {
+const guardarLista = JSON.stringify(listaLibros);
+
+localStorage.setItem("arrayLibros", guardarLista);
+
+const traerLista = localStorage.getItem("arrayLibros");
+
+const parsedArr = JSON.parse(traerLista)
+
+
+for (var i = 0; i < parsedArr.length; i++) {
     var newRow = document.getElementById('tablaDeLibros').insertRow(-1);
 
     var newCell = newRow.insertCell(-1);
     newCell.innerHTML = '<label> Titulo: </label>';
 
     var newCell = newRow.insertCell(-1);
-    newCell.innerHTML = `<label> ${listaLibros[i].nombre} </label>`;
+    newCell.innerHTML = `<label> ${parsedArr[i].nombre} </label>`;
 
     var newCell = newRow.insertCell(-1);
     newCell.innerHTML = '<label> Precio: </label>';
 
     var newCell = newRow.insertCell(-1);
-    newCell.innerHTML = `<label> ${listaLibros[i].precio} </label>`;
+    newCell.innerHTML = `<label> ${parsedArr[i].precio} </label>`;
 
     newCell = newRow.insertCell(-1);
     newCell.innerHTML = '<label>Cantidad:</label>';
 
     newCell = newRow.insertCell(-1);
-    newCell.innerHTML = `<input id='${listaLibros[i].nombre}' type='number' name='cantidad'  value='0' />`;
+    newCell.innerHTML = `<input id='${parsedArr[i].nombre}' type='number' name='cantidad'  value='0' />`;
 
 }
 
@@ -46,9 +55,9 @@ function comprarLibro() {
     var table = document.createElement('table');
     table.id = 'tablaCompraDeLibros';
 
-    for (var i = 0; i < listaLibros.length; i++) {
+    for (var i = 0; i < parsedArr.length; i++) {
 
-        let cantidad = document.getElementById(`${listaLibros[i].nombre}`).value;
+        let cantidad = document.getElementById(`${parsedArr[i].nombre}`).value;
 
         var newRow = table.insertRow(-1);
 
@@ -56,21 +65,21 @@ function comprarLibro() {
         newCell.innerHTML = '<label> Titulo: </label>';
 
         var newCell = newRow.insertCell(-1);
-        newCell.innerHTML = `<label> ${listaLibros[i].nombre} </label>`;
+        newCell.innerHTML = `<label> ${parsedArr[i].nombre} </label>`;
 
         var newCell = newRow.insertCell(-1);
         newCell.innerHTML = '<label> Precio: </label>';
 
         var newCell = newRow.insertCell(-1);
-        newCell.innerHTML = `<label> ${listaLibros[i].precio} </label>`;
+        newCell.innerHTML = `<label> ${parsedArr[i].precio} </label>`;
 
         newCell = newRow.insertCell(-1);
         newCell.innerHTML = '<label>Cantidad:</label>';
 
-        if (listaLibros[i].stock < cantidad) {
+        if (parsedArr[i].stock < cantidad) {
             newCell = newRow.insertCell(-1);
-            newCell.innerHTML = `<label>No tenemos sufiente stock, te debemos ${cantidad - listaLibros[i].stock} libros te puedo vender ${listaLibros[i].stock}</label>`;
-            cantidad = listaLibros[i].stock
+            newCell.innerHTML = `<label>No tenemos sufiente stock, te debemos ${cantidad - parsedArr[i].stock} libros te puedo vender ${parsedArr[i].stock}</label>`;
+            cantidad = parsedArr[i].stock
         } else {
             var newCell = newRow.insertCell(-1);
             newCell.innerHTML = `<label> ${cantidad} </label>`;
@@ -80,9 +89,10 @@ function comprarLibro() {
         newCell.innerHTML = '<label>Total:</label>';
 
         var newCell = newRow.insertCell(-1);
-        newCell.innerHTML = `<label> ${cantidad * listaLibros[i].precio} </label>`;
+        newCell.innerHTML = `<label> ${cantidad * parsedArr[i].precio} </label>`;
 
-        total += cantidad * listaLibros[i].precio;
+        total += cantidad * parsedArr[i].precio;
+
     }
 
     var newRow = table.insertRow(-1);
@@ -91,7 +101,6 @@ function comprarLibro() {
 
     var newCell = newRow.insertCell(-1);
     newCell.innerHTML = `<label> ${total} </label>`;
-
     document.body.append(table);
 
 }
