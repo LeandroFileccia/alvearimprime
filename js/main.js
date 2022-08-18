@@ -19,20 +19,19 @@ const traerLista = localStorage.getItem("arrayLibros");
 
 const parsedArr = JSON.parse(traerLista)
 
+for (let i = 0; i < parsedArr.length; i++) {
+    let newRow = document.getElementById('tablaDeLibros').insertRow(-1);
 
-for (var i = 0; i < parsedArr.length; i++) {
-    var newRow = document.getElementById('tablaDeLibros').insertRow(-1);
-
-    var newCell = newRow.insertCell(-1);
+    let newCell = newRow.insertCell(-1);
     newCell.innerHTML = '<label> Titulo: </label>';
 
-    var newCell = newRow.insertCell(-1);
+    newCell = newRow.insertCell(-1);
     newCell.innerHTML = `<label> ${parsedArr[i].nombre} </label>`;
 
-    var newCell = newRow.insertCell(-1);
+    newCell = newRow.insertCell(-1);
     newCell.innerHTML = '<label> Precio: </label>';
 
-    var newCell = newRow.insertCell(-1);
+    newCell = newRow.insertCell(-1);
     newCell.innerHTML = `<label> ${parsedArr[i].precio} </label>`;
 
     newCell = newRow.insertCell(-1);
@@ -43,34 +42,41 @@ for (var i = 0; i < parsedArr.length; i++) {
 
 }
 
-var botonAgregar = document.getElementById('comprarLibro');
+let botonAgregar = document.getElementById('comprarLibro');
 botonAgregar.addEventListener('click', comprarLibro)
 
 function comprarLibro() {
-    var total = 0;
+
+    Swal.fire({
+        tittle: 'Aprobado!',
+        text: 'Felicitaciones por su compra!',
+        icon: 'success'
+    })
+
+    let total = 0;
 
     if (document.getElementById('tablaCompraDeLibros')) {
         document.getElementById('tablaCompraDeLibros').remove()
     };
-    var table = document.createElement('table');
+    let table = document.createElement('table');
     table.id = 'tablaCompraDeLibros';
 
-    for (var i = 0; i < parsedArr.length; i++) {
+    for (let i = 0; i < parsedArr.length; i++) {
 
         let cantidad = document.getElementById(`${parsedArr[i].nombre}`).value;
 
-        var newRow = table.insertRow(-1);
+        let newRow = table.insertRow(-1);
 
-        var newCell = newRow.insertCell(-1);
+        newCell = newRow.insertCell(-1);
         newCell.innerHTML = '<label> Titulo: </label>';
 
-        var newCell = newRow.insertCell(-1);
+        newCell = newRow.insertCell(-1);
         newCell.innerHTML = `<label> ${parsedArr[i].nombre} </label>`;
 
-        var newCell = newRow.insertCell(-1);
+        newCell = newRow.insertCell(-1);
         newCell.innerHTML = '<label> Precio: </label>';
 
-        var newCell = newRow.insertCell(-1);
+        newCell = newRow.insertCell(-1);
         newCell.innerHTML = `<label> ${parsedArr[i].precio} </label>`;
 
         newCell = newRow.insertCell(-1);
@@ -81,25 +87,25 @@ function comprarLibro() {
             newCell.innerHTML = `<label>No tenemos sufiente stock, te debemos ${cantidad - parsedArr[i].stock} libros te puedo vender ${parsedArr[i].stock}</label>`;
             cantidad = parsedArr[i].stock
         } else {
-            var newCell = newRow.insertCell(-1);
+            let newCell = newRow.insertCell(-1);
             newCell.innerHTML = `<label> ${cantidad} </label>`;
         }
 
         newCell = newRow.insertCell(-1);
         newCell.innerHTML = '<label>Total:</label>';
 
-        var newCell = newRow.insertCell(-1);
+        newCell = newRow.insertCell(-1);
         newCell.innerHTML = `<label> ${cantidad * parsedArr[i].precio} </label>`;
 
         total += cantidad * parsedArr[i].precio;
 
     }
 
-    var newRow = table.insertRow(-1);
+    let newRow = table.insertRow(-1);
     newCell = newRow.insertCell(-1);
     newCell.innerHTML = '<label>Total:</label>';
 
-    var newCell = newRow.insertCell(-1);
+    newCell = newRow.insertCell(-1);
     newCell.innerHTML = `<label> ${total} </label>`;
     document.body.append(table);
 
