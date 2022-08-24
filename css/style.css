@@ -1,0 +1,30 @@
+body {
+    height: 100vh;
+}
+
+.encabezado {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid #6f8cdd;
+    margin-bottom: 20px;
+}
+
+#logo {
+    width: 140px;
+}
+
+#titulo{
+    display: flex;
+    align-items: center;
+    
+}
+
+#boton-vaciar{
+    margin: 1rem;
+}
+
+.imagen{
+    height: 60%;
+    width: 100%;
+}
