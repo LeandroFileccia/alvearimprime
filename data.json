@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "nombre": "Atlas deAnatomia Humana Netter",
+        "precio": 2000,
+        "stock": 50,
+        "img": "galeria/libros/netter.jpg"
+    },
+    {
+        "id": 2,
+        "nombre": "Anatomia Humana Latarjet",
+        "precio": 2800,
+        "stock": 50,
+        "img": "galeria/libros/latarjet.jpg"
+    },
+    {
+        "id": 3,
+        "nombre": "Histologia Texto y Atlas Ross",
+        "precio": 3200,
+        "stock": 50,
+        "img": "galeria/libros/ross.jpg"
+    },
+    {
+        "id": 4,
+        "nombre": "Tratado de Fisiologia Medica - Guyton y Hall",
+        "precio": 3000,
+        "stock": 50,
+        "img": "galeria/libros/guyton.jpg"
+    }
+]
